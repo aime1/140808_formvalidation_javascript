@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .error_validateMsg {
+                color:red;
+                display: none;
+            }
+        </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+
+            var isChecked = false;
+
+            function display_checks() {
+                //alert("you see me ?");
+                if(isChecked){
+                    $('.error_validateMsg').css("display", "block");
+                }
+            }
+
+            function email_validate(input) {
+                var out = document.getElementById('email_validateMsg');
+                if (input.validity) {
+                    if (input.validity.valid === true) {
+                        //out.innerHTML = "<span class='valid'>" + input.value + " is a valid age.</span>";
+                    } else {
+                        //out.innerHTML = "<span class='invalid'>" + input.value + " is not valid age.</span>";
+                        out.innerHTML = "<span class='invalid'>Not a valid e-mail address. Must follow email@host.doamin</span>";
+                        isChecked = true;
+                    }
+                }
+                //document.getElementById('validity').innerHTML = "checkValidity() output: <span class='invalid'>" + input.checkValidity() + "</span>";
+            }
+            function password_validate(input) {
+                var out = document.getElementById('password_validateMsg');
+                if (input.validity) {
+                    if ((input.value.indexOf("(") > -1) ||
+                            (input.value.indexOf("!") > -1) ||
+                            (input.value.indexOf("@") > -1) ||
+                            (input.value.indexOf("#") > -1) ||
+                            (input.value.indexOf("$") > -1) ||
+                            (input.value.indexOf("%") > -1) ||
+                            (input.value.indexOf("^") > -1) ||
+                            (input.value.indexOf("&") > -1) ||
+                            (input.value.indexOf("*") > -1) ||
+                            (input.value.indexOf("+") > -1) ||
+                            (input.value.indexOf(";") > -1) ||
+                            (input.value.indexOf(":") > -1) ||
+                            (input.value.indexOf(")") > -1)) {
+                        //if (input.validity.valid === true) {
+                        //out.innerHTML = "<span class='valid'>" + input.value + " is a valid age.</span>";
+                    } else {
+                        //out.innerHTML = "<span class='invalid'>" + input.value + " is not valid age.</span>";
+                        out.innerHTML = "<span class='invalid'>Password must include one of these (!@#$%^&*+;:)</span>";
+                        isChecked = true;
+                    }
+                }
+                //document.getElementById('validity').innerHTML = "checkValidity() output: <span class='invalid'>" + input.checkValidity() + "</span>";
+            }
+            function zip_validate(input) {
+                var out = document.getElementById('zip_validateMsg');
+                if (input.validity) {
+                    if (input.validity.valid === true) {
+                        //out.innerHTML = "<span class='valid'>" + input.value + " is a valid age.</span>";
+                    } else {
+                        //out.innerHTML = "<span class='invalid'>" + input.value + " is not valid age.</span>";
+                        out.innerHTML = "<span class='invalid'>Zip code must be 5 numeric digits</span>";
+                        isChecked = true;
+                    }
+                }
+                //document.getElementById('validity').innerHTML = "checkValidity() output: <span class='invalid'>" + input.checkValidity() + "</span>";
+            }
+            function phone_validate(input) {
+                var out = document.getElementById('phone_validateMsg');
+                if (input.validity) {
+                    if (input.validity.valid === true) {
+                        //out.innerHTML = "<span class='valid'>" + input.value + " is a valid age.</span>";
+                    } else {
+                        //out.innerHTML = "<span class='invalid'>" + input.value + " is not valid age.</span>";
+                        out.innerHTML = "<span class='invalid'>Phone number must be in form: XXX-XXX-XXXX</span>";
+                        isChecked = true;
+                    }
+                }
+                //document.getElementById('validity').innerHTML = "checkValidity() output: <span class='invalid'>" + input.checkValidity() + "</span>";
+            }
+        </script>
+
+
+    </head>
+    <body>
+
+        <!--span name="main"-->
+        <!--center-->
+        <h4><font face="Verdana">Sign In Form Validation Sample</font></h4>
+        <hr><!-- width=600 size=1 noshade-->
+        <font face="verdana" color="Red" size="2">
+        <!--input name="outputLabel" /-->
+        </font>
+        <p>
+        <table border=0 width=600 bgcolor="#C4D8C4" cellpadding=5 style="border: 1px solid #B78BB7">
+            <tr><td colspan=3>
+                    <table border=0 cellpadding=0 cellspacing=0 width="100%">
+                        <tr><td>
+                                <font face=geneva,arial size=-1><b>Sign-In Information</b></font>
+                            </td></tr>
+                    </table>
+                </td></tr>
+            <tr>
+                <td align=right>
+                    <font face=Arial size=2>Email Address:</font>
+                </td>
+                <td>
+                    <input type="email"
+                           name="email"
+                           style="border: solid 1px; background: #D8D8C4;"
+                           pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                           required
+                           onblur="email_validate(this)"
+                           />
+                </td>
+                <td>
+                    <font face="verdana" color="Red" size="2">
+                    <span id="emailJRequiredFieldValidator">*</span>
+                    <!--input name="emailJRegularExpressionValidator" /-->
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align=right>
+                    <font face=Arial size=2>Password:</font>
+                </td>
+                <td>
+                    <input type="password"
+                           name="password"
+                           style="border: solid 1px; background: #D8D8C4;"
+                           required
+                           onblur="password_validate(this)"
+                           />
+                </td>
+                <td>
+                    <font face="verdana" color="Red" size="2">
+                    <span id="passwordJRequiredFieldValidator">*</span>
+                    <!--input name="passwordJRegularExpressionValidator" /-->
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align=right>
+                    <font face=Arial size=2>Re-enter Password:</font>
+                </td>
+                <td>
+                    <input name="reenterPassword" style="border: solid 1px; background: #D8D8C4;"/>
+                </td>
+                <td>
+                    <font face="verdana" color="Red" size="2">
+                    <span id="reenterPasswordJRequiredFieldValidator">*</span>
+                    <!--input name="reenterPasswordJCompareValidator" /-->
+                    </font>
+                </td>
+            </tr>
+            <tr><td colspan=3>&nbsp;</td></tr>
+            <tr><td colspan=3>
+                    <table border=0 cellpadding=0 cellspacing=0 width="100%">
+                        <tr><td><font face=geneva,arial size=-1>
+                                <b>Personal Information</b></font>
+                            </td></tr>
+                    </table>
+                </td></tr>
+            <tr>
+                <td align=right>
+                    <font face=Arial size=2>First Name:</font>
+                </td>
+                <td>
+                    <input name="firstName" style="border: solid 1px; background: #D8D8C4;"/>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td align=right>
+                    <font face=Arial size=2>Last Name:</font>
+                </td>
+                <td>
+                    <input name="lastName" style="border: solid 1px; background: #D8D8C4;"/>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td align=right>
+                    <font face=Arial size=2>Address:</font>
+                </td>
+                <td>
+                    <input name="address" style="border: solid 1px; background: #D8D8C4;"/>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td align=right>
+                    <font face=Arial size=2>State:</font>
+                </td>
+                <td>
+                    <input name="state" style="border: solid 1px; background: #D8D8C4;"/>
+                    <font face=Arial size=2>ZipCode:</font>&nbsp;
+                    <input type="text"
+                           name="zip"
+                           style="border: solid 1px; background: #D8D8C4;"
+                           pattern="^[0-9]{5}$"
+                           required
+                           onblur="zip_validate(this)"
+                           />
+                </td>
+                <td>
+                    <font face="verdana" color="Red" size="2">
+                    <span id="zipJRequiredFieldValidator">*</span>
+                    <!--input name="zipJRegularExpressionValidator" /-->
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align=right>
+                    <font face=Arial size=2>Phone (e.g., XXX-XXX-XXXX):</font>
+                </td>
+                <td>
+                    <input type="tel" 
+                           name="phone" 
+                           style="border: solid 1px; background: #D8D8C4;" 
+                           pattern="^\d{3}[\-]\d{3}[\-]\d{4}$"
+                           required
+                           onblur="phone_validate(this)"
+                           />
+                </td>
+                <td>
+                    <font face="verdana" color="Red" size="2">
+                    <span id="phoneJRequiredFieldValidator">*</span>
+                    <!--input name="phoneJRegularExpressionValidator" /-->
+                    </font>
+                </td>
+            </tr>
+            <tr><td colspan=3>&nbsp;</td></tr>
+            <tr>
+                <td colspan=3>
+                    <font face=Arial size=2><b>Credit Card Information</b></font>
+                </td>
+            </tr>
+            <tr>
+                <td align=right>
+                    <font face=Arial size=2>Card Type:</font>
+                </td>
+                <td>
+                    <input type="radio" name="cardType1" style="border: solid 1px; background: #D8D8C4;"/>Mastercard
+                    <input type="radio" name="cardType2" style="border: solid 1px; background: #D8D8C4;"/>Visa
+                </td>
+                <td>
+                    <font face="verdana" color="Red" size="2">
+                    <span id="cardType1JRequiredFieldValidator">*</span>
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align=right>
+                    <font face=Arial size=2>Card Number:</font>
+                </td>
+                <td>
+                    <input name="cardNumber" style="border: solid 1px; background: #D8D8C4;"/>
+                </td>
+                <td>
+                    <font face="verdana" color="Red" size="2">
+                    <span id="cardNumberJRequiredFieldValidator">*</span>
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align=right>
+                    <font face=Arial size=2>Expiration Date:</font>
+                </td>
+                <td>
+                    <input type="month" name="expirationCombo" style="border: solid 1px; background: #D8D8C4;"/>
+                </td>
+                <td>
+                    <font face="verdana" color="Red" size="2">
+                    <span id="expirationComboJRequiredFieldValidator">*</span>
+                    </font>
+                </td>
+            </tr>
+        </table>
+        <p>
+            <!-- input type="button" value="Validate"/ -->
+            <button onclick="display_checks()">Validate</button>
+        <p>
+            <font face="verdana" color="Red" size="2">
+            <!--input id="groupValidator" /--> 
+            </font>
+        <div class="error_validateMsg">Please fix the following errors:</div>
+        <div class="error_validateMsg" id="email_validateMsg"></div>
+        <div class="error_validateMsg" id="password_validateMsg"></div>
+        <div class="error_validateMsg" id="zip_validateMsg"></div>
+        <div class="error_validateMsg" id="phone_validateMsg"></div>
+        <hr><!-- width=600 size=1 noshade-->
+        <!--/span-->
+    </body>
+</html>
